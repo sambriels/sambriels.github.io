@@ -1,0 +1,19 @@
+---
+import DarkModeToggle from "./DarkModeToggle.astro";
+import HeaderLink from "./HeaderLink.astro";
+---
+
+<header class="py-2">
+  <nav class="flex flex-gap-4 items-center">
+    <div class="flex flex-1">
+      <ul class="flex gap-6 list-none pl-0">
+        <HeaderLink href="/">About me</HeaderLink>
+        <HeaderLink href="/articles">Articles</HeaderLink>
+      </ul>
+    </div>
+
+    <div>
+      <DarkModeToggle />
+    </div>
+  </nav>
+</header>

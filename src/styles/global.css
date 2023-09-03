@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+    Tailwind colors listed here: https://tailwindcss.com/docs/customizing-colors
+    
+    Why colors are written in rgb format (255 255 255) instead of hex (#ffffff)
+    https://tailwindcss.com/docs/customizing-colors#using-css-variables 
+*/
+@layer base {
+  body {
+    overflow-y: scroll;
+  }
+  .copy-code {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: theme('colors.highlight.normal');
+    border-radius: 8px;
+    border: 1px solid theme('colors.highlight.normal');
+    padding: 6px;
+  }
+
+  .copy-code:hover {
+    color: theme('colors.highlight.bright');
+    border-color: theme('colors.highlight.bright');
+  }
+
+  code {
+    counter-reset: line;
+  }
+
+  code[data-line-numbers] > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+
+    display: inline-block;
+    width: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    color: theme('colors.gray.500');
+  }
+
+  code[data-line-numbers] > [data-highlighted-line][data-line]::before {
+    color: theme('colors.highlight.bright');
+  }
+
+  code > [data-highlighted-line] {
+    background: theme('colors.highlight.dim');
+    padding: 3px 0;
+  }
+
+  code[data-line-numbers-max-digits="2"] > [data-line]::before {
+    width: 2rem;
+  }
+
+  code[data-line-numbers-max-digits="3"] > [data-line]::before {
+    width: 3rem;
+  }
+}
+
+@layer components {
+}

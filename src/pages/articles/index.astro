@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import Base from "../../layouts/Base.astro";
+
+const posts = (await getCollection("articles")).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<Base>
+  {
+    posts.map((post) => (
+      <article class="w-full ">
+        <div class="group relative">
+          <h3 class="mt-3 text-lg font-semibold leading-6  group-hover:text-gray-600">
+            <a href={`/articles/${post.slug}`} class="no-underline">
+              <span class="absolute inset-0" />
+              {post.data.title}
+            </a>
+          </h3>
+          <div class="flex items-center gap-x-4 text-sm">
+            <time datetime="2020-03-16" class="">
+              <FormattedDate date={post.data.pubDate} />
+            </time>
+            {post.data.tags.map((tag) => (
+              <a
+                href="#"
+                class="rounded-md no-underline px-2 py-1 bg-zinc-100 dark:bg-gray-700  "
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+          <p class="mt-2 line-clamp-3 text-sm leading-6 ">
+            {post.data.description}
+          </p>
+        </div>
+      </article>
+    ))
+  }
+</Base>
